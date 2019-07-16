@@ -1,0 +1,10 @@
+
+# server
+server:
+  port: 11201
+  servlet:
+    contextPath: /auth
+
+# jwt
+signing:
+ key: "345345fsdgsf5345"
