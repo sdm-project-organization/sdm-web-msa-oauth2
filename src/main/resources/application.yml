@@ -1,7 +1,7 @@
 
 # server
 server:
-  port: 11201
+  port: 12301 # local
   servlet:
     contextPath: /auth
 

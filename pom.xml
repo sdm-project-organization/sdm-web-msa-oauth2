@@ -12,6 +12,7 @@
     <artifactId>oauth2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>oauth2</name>
+    <packaging>war</packaging>
     <description>oauth2</description>
 
     <properties>

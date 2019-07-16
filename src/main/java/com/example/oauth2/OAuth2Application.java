@@ -2,6 +2,7 @@ package com.example.oauth2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -16,7 +17,7 @@ import java.util.Map;
 @RestController
 @EnableResourceServer
 @EnableAuthorizationServer // Oauth2 서비스 명시
-public class OAuth2Application {
+public class OAuth2Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(OAuth2Application.class, args);
