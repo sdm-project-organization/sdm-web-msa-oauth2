@@ -21,9 +21,12 @@ public class JWTTokenStoreConfig {
         return new JwtTokenStore(jwtAccessTokenConverter());
     }
 
-    // 서비스에 전달된 토큰에서 데이터를 읽는데 사용
+    /**
+     * tokenServices - 서비스에 전달된 토큰에서 데이터를 읽는데 사용
+     *
+     * */
     @Bean
-    @Primary // 특정 타입의 빈이 둘 이상일 때 우선 적용되도록
+    @Primary // 우선적용
     public DefaultTokenServices tokenServices() {
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
         defaultTokenServices.setTokenStore(tokenStore());
@@ -31,11 +34,15 @@ public class JWTTokenStoreConfig {
         return defaultTokenServices;
     }
 
-    // JWT와 OAuth2 서버 사이의 변환기로 동작
+    /**
+     * jwtAccessTokenConverter - JWT와 OAuth2 서버 사이의 변환기로 동작
+     *
+     * */
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey(serviceConfig.getJwtSigningKey()); // 토큰 서명에 사용되는 서명키를 정의
+        // 토큰 서명에 사용되는 서명키를 정의
+        converter.setSigningKey(serviceConfig.getJwtSigningKey());
         return converter;
     }
 
