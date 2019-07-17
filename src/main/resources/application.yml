@@ -1,19 +1,20 @@
 
+server:
+  port: 8090
+  servlet:
+    contextPath: /auth
+
+signing:
+  key: "345345fsdgsf5345"
+
+---
+
 # ================ DEFAULT ================
 
 spring:
   profiles: default
   application:
     name: oauth2
-
-server:
-  port: 8090
-  servlet:
-    contextPath: /auth
-
-# JWT
-signing:
- key: "345345fsdgsf5345"
 
 eureka:
   instance:
@@ -32,15 +33,6 @@ spring:
   profiles: dev
   application:
     name: oauth2
-
-server:
-  port: 8090
-  servlet:
-    contextPath: /auth
-
-# JWT
-signing:
-  key: "345345fsdgsf5345"
 
 eureka:
   instance:
