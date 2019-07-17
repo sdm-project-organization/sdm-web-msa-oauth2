@@ -1,4 +1,4 @@
-package com.example.oauth2.security;
+package com.mo.oauth2.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

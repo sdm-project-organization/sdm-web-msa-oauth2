@@ -1,10 +1,52 @@
 
-# server
+# ================ DEFAULT ================
+
+spring:
+  profiles: default
+  application:
+    name: oauth2
+
 server:
-  port: 12301 # local
+  port: 8090
   servlet:
     contextPath: /auth
 
-# jwt
+# JWT
 signing:
  key: "345345fsdgsf5345"
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+
+---
+
+# ================ DEV ================
+
+ spring:
+   profiles: dev
+   application:
+     name: oauth2
+
+ server:
+   port: 8090
+   servlet:
+     contextPath: /auth
+
+ # JWT
+ signing:
+   key: "345345fsdgsf5345"
+
+ eureka:
+   instance:
+     hostname: dev.avocadostudio.xyz
+   client:
+     registerWithEureka: true
+     fetchRegistry: true
+     serviceUrl:
+       defaultZone: http://${eureka.instance.hostname}:8761/eureka/

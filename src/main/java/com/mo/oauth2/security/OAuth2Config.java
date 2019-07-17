@@ -9,16 +9,9 @@
 //import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 //import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 //import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
-//import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
-//import org.springframework.security.oauth2.provider.token.TokenEnhancer;
-//import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
-//import org.springframework.security.oauth2.provider.token.TokenStore;
-//import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-//
-//import java.util.Arrays;
 //
 //@Configuration
-//public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
+//public class OAuth2Config extends AuthorizationServerConfigurerAdapter /* 스프링시큐리티 - 인증 및 인가 수행 매커니즘 */ {
 //
 //    @Autowired
 //    private AuthenticationManager authenticationManager;
@@ -27,32 +20,7 @@
 //    @Autowired
 //    private UserDetailsService userDetailsService;
 //
-//    @Autowired
-//    private TokenStore tokenStore;
-//
-//    @Autowired
-//    private DefaultTokenServices tokenServices;
-//
-//    @Autowired
-//    private TokenEnhancer jwtTokenEnhancer;
-//
-//    @Autowired
-//    private JwtAccessTokenConverter jwtAccessTokenConverter;
-//
-//    @Override
-//    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-//        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-//        tokenEnhancerChain.setTokenEnhancers(
-//                Arrays.asList(
-//                        jwtTokenEnhancer,
-//                        jwtAccessTokenConverter)
-//        );
-//        endpoints.tokenStore(tokenStore)
-//                .accessTokenConverter(jwtAccessTokenConverter)
-//                .authenticationManager(authenticationManager)
-//                .userDetailsService(userDetailsService);
-//    }
-//
+//    /* 인증된 서비스에 등록된 클라이언트 APP을 정의 */
 //    @Override
 //    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 //        clients.inMemory()
@@ -60,13 +28,21 @@
 //                .secret(PasswordEncoderFactories
 //                        .createDelegatingPasswordEncoder()
 //                        .encode("thisissecret"))
+//                // OAuth2 서비스에서 지원하는 인가 그랜트타입을 구분
 //                .authorizedGrantTypes("refresh_token", "password", "client_credentials")
+//                // 호출 APP이 Oauth2 서버에 AccessToken을 요청할 때 APP 수행 경계를 정의
 //                .scopes("webclient", "mobileclient");
+//    }
+//
+//    @Override
+//    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+//        endpoints
+//                .authenticationManager(authenticationManager)
+//                .userDetailsService(userDetailsService);
 //    }
 //
 //    /*@Override
 //    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 //        security.allowFormAuthenticationForClients();
 //    }*/
-//
 //}
