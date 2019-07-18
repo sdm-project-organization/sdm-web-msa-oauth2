@@ -26,7 +26,7 @@ public class JWTTokenStoreConfig {
      *
      * */
     @Bean
-    @Primary // 우선적용
+    @Primary
     public DefaultTokenServices tokenServices() {
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
         defaultTokenServices.setTokenStore(tokenStore());

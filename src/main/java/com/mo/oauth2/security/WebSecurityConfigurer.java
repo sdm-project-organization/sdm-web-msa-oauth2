@@ -13,7 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     /**
-     * authenticationManagerBean - 스프링 시큐리티가 인증을 처리하는데 사용
+     * authenticationManagerBean 스프링 시큐리티가 인증을 처리하는데 사용
+     *
      * */
     @Override
     @Bean
@@ -22,7 +23,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * userDetailsServiceBean - UserDetailsService 스프링 시큐리티에서 반환될 사용자 정보를 저장하는데 사용
+     * userDetailsServiceBean 스프링 시큐리티에서 반환될 사용자 정보를 저장하는데 사용
      *
      * */
    @Override

@@ -1,4 +1,4 @@
-package com.mo.oauth2.config;
+package com.mo.oauth2.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

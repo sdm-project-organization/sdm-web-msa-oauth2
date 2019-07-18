@@ -29,16 +29,16 @@ eureka:
 
 # ================ DEV ================
 
-spring:
-  profiles: dev
-  application:
-    name: oauth2
+ spring:
+   profiles: dev
+   application:
+     name: oauth2
 
-eureka:
-  instance:
-    hostname: dev.avocadostudio.xyz
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+ eureka:
+   instance:
+     hostname: dev.avocadostudio.xyz
+   client:
+     registerWithEureka: true
+     fetchRegistry: true
+     serviceUrl:
+       defaultZone: http://${eureka.instance.hostname}:8761/eureka/
