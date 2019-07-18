@@ -21,19 +21,16 @@ import java.util.Map;
 @EnableAuthorizationServer // Oauth2 서비스 명시
 public class OAuth2Application extends SpringBootServletInitializer {
 
-    @Value("${server.servlet.contextPath}")
-    String contextPath;
-
     @Value("${signing.key}")
     String signingKey;
 
     @PostConstruct
     public void init() {
-        System.out.println("contextPath " + contextPath);
         System.out.println("signingKey " + signingKey);
     }
 
     public static void main(String[] args) {
+        System.setProperty("server.servlet.context-path", "/auth");
         SpringApplication.run(OAuth2Application.class, args);
     }
 

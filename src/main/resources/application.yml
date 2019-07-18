@@ -1,8 +1,6 @@
 
 server:
   port: 8090
-  servlet:
-    contextPath: /auth
 
 signing:
   key: "345345fsdgsf5345"
@@ -15,14 +13,6 @@ spring:
   profiles: default
   application:
     name: oauth2
-
-server:
-  port: 8090
-  servlet:
-    contextPath: /auth
-
-signing:
-  key: "345345fsdgsf5345"
 
 #eureka:
 #  instance:
@@ -41,14 +31,6 @@ signing:
    profiles: dev
    application:
      name: oauth2
-
- server:
-   port: 8090
-   servlet:
-     contextPath: /auth
-
- signing:
-   key: "345345fsdgsf5345"
 
 # eureka:
 #   instance:
