@@ -1,5 +1,6 @@
 package com.mo.oauth2;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -10,6 +11,7 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +20,18 @@ import java.util.Map;
 @EnableResourceServer
 @EnableAuthorizationServer // Oauth2 서비스 명시
 public class OAuth2Application extends SpringBootServletInitializer {
+
+    @Value("${server.servlet.contextPath}")
+    String contextPath;
+
+    @Value("${signing.key}")
+    String signingKey;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("contextPath " + contextPath);
+        System.out.println("signingKey " + signingKey);
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(OAuth2Application.class, args);
