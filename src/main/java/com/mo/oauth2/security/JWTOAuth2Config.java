@@ -6,9 +6,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
@@ -39,6 +41,10 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
 
+
+    /*@Autowired
+    private PasswordEncoder passwordEncoder;*/
+
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         // 스프링 OAuth TokenEnhancerChain 클래스를 등록하면 여러 `TokenEnhancer`를 후킹 가능
@@ -59,17 +65,24 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
+                // cliendId
                 .withClient("eagleeye")
-                .secret(PasswordEncoderFactories
-                        .createDelegatingPasswordEncoder()
-                        .encode("thisissecret"))
+                // secret
+                .secret(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("thisissecret"))
                 .authorizedGrantTypes("refresh_token", "password", "client_credentials")
-                .scopes("webclient", "mobileclient");
+                .scopes("webclient", "mobileclient")
+                /*.accessTokenValiditySeconds(600)*/
+                /*.refreshTokenValiditySeconds(3600)*/
+        ;
     }
 
-    /*@Override
+    @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.allowFormAuthenticationForClients();
-    }*/
+        security
+                /*.tokenKeyAccess("permitAll()")*/
+                .allowFormAuthenticationForClients()
+                /*.passwordEncoder(this.passwordEncoder)*/
+        ;
+    }
 
 }
