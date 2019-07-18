@@ -51,7 +51,7 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
         endpoints.tokenStore(tokenStore)
                 .accessTokenConverter(jwtAccessTokenConverter)
                 // configure()를 호출할 때 전달된 endpoints 매개변수에 `tokenEnhancerChain` 연결
-                .tokenEnhancer(tokenEnhancerChain)
+                // .tokenEnhancer(tokenEnhancerChain)
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
     }

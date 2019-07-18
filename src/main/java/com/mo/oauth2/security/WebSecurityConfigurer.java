@@ -26,7 +26,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
      * userDetailsServiceBean 스프링 시큐리티에서 반환될 사용자 정보를 저장하는데 사용
      *
      * */
-   @Override
+    @Override
     @Bean
     public UserDetailsService userDetailsServiceBean() throws Exception {
         return super.userDetailsServiceBean();
