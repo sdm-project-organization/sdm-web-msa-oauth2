@@ -2,8 +2,26 @@
 server:
   port: 8090
 
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: DEBUG
+    com.mo: DEBUG
+
 signing:
   key: "345345fsdgsf5345"
+
+env:
+  host:
+    local: localhost
+    dev: dev.avocadostudio.xyz
+  db:
+    local:
+      port: 3306
+      schema: GUARD
+    dev:
+      port: 3306
+      schema: GUARD
 
 ---
 
@@ -12,16 +30,16 @@ signing:
 spring:
   profiles: default
   application:
-    name: oauth2
+    name: auth
 
-#eureka:
-#  instance:
-#    hostname: localhost
-#  client:
-#    registerWithEureka: true
-#    fetchRegistry: true
-#    serviceUrl:
-#      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+eureka:
+  instance:
+    hostname: ${env.host.local}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
 
 ---
 
@@ -30,13 +48,13 @@ spring:
  spring:
    profiles: dev
    application:
-     name: oauth2
+     name: auth
 
-# eureka:
-#   instance:
-#     hostname: dev.avocadostudio.xyz
-#   client:
-#     registerWithEureka: true
-#     fetchRegistry: true
-#     serviceUrl:
-#       defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+ eureka:
+   instance:
+     hostname: ${env.host.dev}
+   client:
+     registerWithEureka: true
+     fetchRegistry: true
+     serviceUrl:
+       defaultZone: http://${eureka.instance.hostname}:8761/eureka/
