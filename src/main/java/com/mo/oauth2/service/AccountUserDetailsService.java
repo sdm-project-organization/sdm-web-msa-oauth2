@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.Optional;
 
 @Service
@@ -30,16 +29,7 @@ public class AccountUserDetailsService implements UserDetailsService {
         Account account = Optional
                 .ofNullable(guardDiscoveryClient.getAccount(username))
                 .orElseThrow(()-> new UsernameNotFoundException("user not found")) ;
-        return new AccountUserDetails(account);
+        return new AccountUserDetails(account, account.getAuthorities());
     }
 
-    private Collection<GrantedAuthority> getAuthorities(Account account) {
-        /*if(account.isAdmin()) {
-            return AuthorityUtils.createAuthorityList("ROLE_USER", "ROLE_ADMIN");
-        } else {
-            return AuthorityUtils.createAuthorityList("ROLE_USER");
-        }*/
-
-        return AuthorityUtils.createAuthorityList("ROLE_USER");
-    }
 }

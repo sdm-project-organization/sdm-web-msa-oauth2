@@ -13,9 +13,9 @@ public class AccountUserDetails implements UserDetails {
     private final Account account;
     private final Collection<GrantedAuthority> authorities;
 
-    public AccountUserDetails(Account account) {
+    public AccountUserDetails(Account account, Collection<GrantedAuthority> authorities) {
         this.account = account;
-        this.authorities = account.getAuthorities();
+        this.authorities = authorities;
     }
 
     @Override
