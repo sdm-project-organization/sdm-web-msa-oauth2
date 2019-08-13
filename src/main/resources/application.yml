@@ -1,6 +1,8 @@
 
 server:
   port: 8090
+  servlet:
+    context-path: /api/auth
 
 logging:
   level:

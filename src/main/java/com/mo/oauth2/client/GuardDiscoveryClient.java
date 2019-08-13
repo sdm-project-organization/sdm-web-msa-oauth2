@@ -28,7 +28,7 @@ public class GuardDiscoveryClient {
         if (instances.size()==0) return null;
 
         // 호출할 서비스 엔드포인트 조회
-        String serviceUri = String.format("%s/users/username/%s",
+        String serviceUri = String.format("%s/api/guard/users/username/%s",
                 instances.get(0).getUri().toString(), username);
 
         // 서비스를 호출하는데 표준 스프링 RestTemplate 클래스 사용
